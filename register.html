@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Up | GroceryKo</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-page">
+
+    <div class="awning"></div>
+
+    <!-- LEFT BRAND SECTION -->
+    <aside class="brand-panel">
+
+        <div class="brand-content">
+
+            <div class="store-badge">
+                <span class="store-icon"></span>
+                YOUR NEIGHBORHOOD STORE
+            </div>
+
+            <h1>
+                <span>GroceryKo</span>
+            </h1>
+
+            <p class="brand-description">
+                May kanin po dito BUSENG!!!
+            </p>
+
+            <ul class="perks">
+                <li>Affordable everyday essentials</li>
+                <li>Your favorite local products</li>
+                <li>Convenient and easy shopping</li>
+            </ul>
+
+            <div class="brand-footer">
+                <span>MADE FOR EVERYDAY NEEDS</span>
+                <span class="footer-line"></span>
+            </div>
+
+        </div>
+
+        <!-- Decorative Elements -->
+        <span class="blob b1"></span>
+        <span class="blob b2"></span>
+        <span class="blob b3"></span>
+
+        <div class="decorative-label label-one">FRESH & LOCAL</div>
+        <div class="decorative-label label-two">TINGI-TINGI WELCOME!</div>
+
+    </aside>
+
+
+    <!-- RIGHT REGISTRATION SECTION -->
+    <main class="form-panel">
+
+        <form id="regForm" class="card" novalidate>
+
+            <div class="form-heading">
+                <span class="form-eyebrow">Welcome To GroceryKo</span>
+
+                <h2>Create Account</h2>
+
+                <p>Join our store community and get started!</p>
+            </div>
+
+
+            <!-- FULL NAME -->
+            <div class="field">
+                <label for="full_name">Full Name</label>
+
+                <input
+                    type="text"
+                    id="full_name"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
+                >
+            </div>
+
+
+            <!-- ADDRESS -->
+            <div class="field">
+                <label for="address">Complete Address</label>
+
+                <input
+                    type="text"
+                    id="address"
+                    placeholder="Enter your address"
+                    autocomplete="street-address"
+                    required
+                >
+            </div>
+
+
+            <!-- USERNAME -->
+            <div class="field">
+                <label for="user_name">Username</label>
+
+                <input
+                    type="text"
+                    id="user_name"
+                    placeholder="Choose a username"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+
+            <!-- EMAIL -->
+            <div class="field">
+                <label for="email">Email Address</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="example@email.com"
+                    autocomplete="email"
+                    required
+                >
+            </div>
+
+
+            <!-- PASSWORD -->
+            <div class="field">
+                <label for="pword">Password</label>
+
+                <input
+                    type="password"
+                    id="pword"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                    required
+                >
+            </div>
+
+
+            <!-- SUBMIT BUTTON -->
+            <button type="submit" class="btn">
+                Create My Account
+                <span class="button-arrow">→</span>
+            </button>
+
+
+            <!-- MESSAGE -->
+            <p id="regMessage" class="message" role="alert"></p>
+
+
+            <!-- LOGIN LINK -->
+            <p class="switch">
+                Already have an account?
+                <a href="login.html">Log in here</a>
+            </p>
+
+
+            <div class="form-bottom">
+                GroceryKo
+            </div>
+
+        </form>
+
+    </main>
+
+
+    <!-- EXISTING JAVASCRIPT -->
+    <script src="js/reg.js"></script>
+
+</body>
+</html>

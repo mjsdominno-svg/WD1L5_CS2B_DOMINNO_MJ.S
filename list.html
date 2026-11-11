@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>My Shopping List | GroceryKo</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="list-page">
+
+    <div class="awning"></div>
+
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+        <div class="list-brand">
+
+            <span class="list-store-icon"></span>
+
+            <div>
+                <strong class="logo">GroceryKo</strong>
+                <small>BUSENG!!!</small>
+            </div>
+
+        </div>
+
+
+        <span class="hello">
+            Hello, <strong id="userTag"></strong>
+        </span>
+
+
+        <button type="button" id="logoutBtn" class="btn btn-ghost">
+            Log Out
+        </button>
+
+    </header>
+
+
+    <main class="board">
+
+
+        <!-- WELCOME SECTION -->
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <span class="hero-label">YOUR SHOPPING DASHBOARD</span>
+
+                <h1>
+                    Welcome, <span id="welcomeName"></span>!
+                </h1>
+
+                <p id="summary">
+                    Manage your shopping list with ease.
+                </p>
+
+                <div class="progress-info">
+                    <span>Shopping Progress</span>
+                </div>
+
+                <div class="progress" role="progressbar"
+                     aria-label="Shopping progress">
+
+                    <div id="progressBar"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-decoration">
+                <span>🛒</span>
+                <small>SHOP SMART</small>
+            </div>
+
+        </section>
+
+
+
+        <!-- ADD ITEM SECTION -->
+        <section class="add-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">SHOPPING MANAGEMENT</span>
+                    <h2>Add New Item</h2>
+                    <p>Add the products you need from our store.</p>
+                </div>
+
+                <span class="section-icon">🛍️</span>
+
+            </div>
+
+
+            <form id="itemForm" class="add-row" novalidate>
+
+                <div class="field">
+
+                    <label for="item_name">Product Name</label>
+
+                    <input
+                        type="text"
+                        id="item_name"
+                        placeholder="e.g. Rice, Coffee, Bread"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="item_qty">Quantity</label>
+
+                    <input
+                        type="number"
+                        id="item_qty"
+                        min="1"
+                        value="1"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="item_cat">Category</label>
+
+                    <select id="item_cat">
+
+                        <option>Produce</option>
+                        <option>Meat &amp; Fish</option>
+                        <option>Dairy &amp; Eggs</option>
+                        <option>Pantry</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="submit" class="btn">
+                    <span>+</span> Add Item
+                </button>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- FILTER SECTION -->
+        <section class="filter-section">
+
+            <div>
+                <span class="section-label">ORGANIZE YOUR ITEMS</span>
+                <h2>My Shopping List</h2>
+            </div>
+
+
+            <div class="tabs" id="filterTabs">
+
+                <button type="button"
+                        class="tab active"
+                        data-filter="all">
+                    All Items
+                </button>
+
+                <button type="button"
+                        class="tab"
+                        data-filter="todo">
+                    To Buy
+                </button>
+
+                <button type="button"
+                        class="tab"
+                        data-filter="bought">
+                    Purchased
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- SHOPPING LIST -->
+        <section class="paper">
+
+            <div class="paper-head">
+
+                <div>
+                    <span class="section-label">YOUR SELECTED PRODUCTS</span>
+                    <h2>Shopping Items</h2>
+                </div>
+
+                <span id="countLabel" class="summary-count"></span>
+
+            </div>
+
+
+            <div class="list-column-labels">
+                <span>PRODUCT</span>
+                <span>DETAILS</span>
+                <span>ACTION</span>
+            </div>
+
+
+            <p id="emptyNote" class="empty">
+                Your shopping list is empty.
+            </p>
+
+
+            <ul id="groceryList"></ul>
+
+
+            <div class="paper-footer">
+
+                <span>Thank you for shopping mga BUSENG!</span>
+
+                <button type="button"
+                        id="clearBtn"
+                        class="btn btn-danger">
+                    Clear All Items
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="list-footer">
+
+            <span>GroceryKo</span>
+
+            <p>Your everyday essentials, always within reach.</p>
+
+        </footer>
+
+
+    </main>
+
+
+    <!-- EXISTING JAVASCRIPT -->
+    <script src="js/list.js"></script>
+
+</body>
+</html>

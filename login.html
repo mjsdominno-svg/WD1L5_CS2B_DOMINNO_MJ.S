@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login | GroceryKo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="auth-page">
+
+    <div class="awning"></div>
+
+    <aside class="brand-panel">
+
+        <div class="brand-content">
+
+            <div class="store-badge">
+                <span class="store-icon"></span>
+                YOUR NEIGHBORHOOD STORE
+            </div>
+
+            <h1>
+                <span>GroceryKo</span>
+            </h1>
+
+            <p class="brand-description">
+                Welcome back! BUSENG!!!
+            </p>
+
+            <ul class="perks">
+                <li>Easy and convenient shopping</li>
+                <li>Find your everyday essentials</li>
+                <li>Your shopping list is saved</li>
+            </ul>
+
+            <div class="brand-footer">
+                <span>YOUR STORE, YOUR EVERYDAY NEEDS</span>
+                <span class="footer-line"></span>
+            </div>
+
+        </div>
+
+        <span class="blob b1"></span>
+        <span class="blob b2"></span>
+        <span class="blob b3"></span>
+
+        <div class="decorative-label label-one">FRESH & LOCAL</div>
+        <div class="decorative-label label-two">WELCOME BACK!</div>
+
+    </aside>
+
+
+    <main class="form-panel">
+
+        <form id="loginForm" class="card" novalidate>
+
+            <div class="form-heading">
+
+                <span class="form-eyebrow">PILINO SARI-SARI STORE</span>
+
+                <h2>Welcome Back!</h2>
+
+                <p>Log in to continue your shopping experience.</p>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="login_uname">Username</label>
+
+                <input
+                    type="text"
+                    id="login_uname"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    required
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="login_pword">Password</label>
+
+                <input
+                    type="password"
+                    id="login_pword"
+                    placeholder="Enter your password"
+                    autocomplete="current-password"
+                    required
+                >
+
+            </div>
+
+
+            <label class="check">
+                <input type="checkbox" id="showPassword">
+                Show password
+            </label>
+
+
+            <button type="submit" class="btn">
+                Log In
+                <span class="button-arrow">→</span>
+            </button>
+
+
+            <p id="logMessage" class="message" role="alert"></p>
+
+
+            <p class="switch">
+                Don't have an account?
+                <a href="register.html">Create an account</a>
+            </p>
+
+
+            <div class="form-bottom">
+                GroceryKo
+            </div>
+
+        </form>
+
+    </main>
+
+
+    <!-- EXISTING JAVASCRIPT -->
+    <script src="js/log.js"></script>
+
+</body>
+</html>

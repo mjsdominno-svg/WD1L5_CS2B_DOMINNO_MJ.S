@@ -1,0 +1,541 @@
+* { margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; }
+
+/* Needed because list.js uses the "hidden" attribute on #emptyNote */
+[hidden] { display: none !important; }
+
+body {
+    font-family: system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding-top: 26px; /* space for the awning */
+    background-color: var(--cream);
+    background-image: radial-gradient(var(--dots) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+}
+
+h1, h2 { line-height: 1.1; letter-spacing: -0.5px; }
+p { line-height: 1.6; }
+
+a {
+    color: var(--green-d);
+    font-weight: 700;
+    text-underline-offset: 3px;
+}
+a:hover { color: var(--red); }
+
+/*AWNING (striped store roof)*/
+.awning {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 26px;
+    z-index: 50;
+    background: repeating-linear-gradient(90deg, var(--red) 0 40px, #fff 40px 80px);
+    border-bottom: 3px solid var(--ink);
+}
+
+/*FORM FIELDS*/
+.field { margin-bottom: 16px; }
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    font-size: 14px;
+    background: #fff;
+    border: 2.5px solid var(--ink);
+    border-radius: 12px;
+    outline: none;
+    transition: box-shadow 0.15s, transform 0.15s;
+}
+
+/* Focus: yellow hard shadow instead of a soft glow */
+input:focus, select:focus {
+    box-shadow: 4px 4px 0 var(--yellow);
+    transform: translate(-2px, -2px);
+}
+
+input[type="checkbox"],
+input[type="checkbox"]:focus {
+    width: 22px; height: 22px;
+    padding: 0;
+    accent-color: var(--green);
+    box-shadow: none;
+    transform: none;
+    cursor: pointer;
+}
+
+/*BUTTONS (shared "sticker" look)*/
+.btn, .tab, .remove {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--yellow);
+    border: 2.5px solid var(--ink);
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 var(--ink);
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.12s;
+}
+
+.btn:hover, .tab:hover, .remove:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+}
+
+/* Pressed: button sinks into its shadow */
+.btn:active, .tab:active, .remove:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 var(--ink);
+}
+
+.button-arrow { display: inline-block; transition: transform 0.15s; }
+.btn:hover .button-arrow { transform: translateX(5px); }
+
+.btn-ghost { background: #fff; padding: 9px 16px; }
+.btn-danger { background: var(--red); color: #fff; padding: 9px 16px; font-size: 13px; }
+
+/*MESSAGES (JS sets class "message error|success")*/
+.message {
+    margin-top: 14px;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 2.5px solid var(--ink);
+    border-radius: 12px;
+}
+.message:empty { display: none; }
+.message.success { background: var(--green-l); }
+.message.error { background: #fecaca; }
+
+/*LOGIN & REGISTER PAGES*/
+.auth-page {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+}
+
+/* --- Left brand panel --- */
+.brand-panel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 60px 50px;
+    color: #fff;
+    background: var(--green);
+    border-right: 3px solid var(--ink);
+}
+
+.brand-content { position: relative; z-index: 2; max-width: 460px; }
+
+.store-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--ink);
+    background: var(--yellow);
+    border: 2.5px solid var(--ink);
+    border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--ink);
+}
+.store-icon:empty { display: none; }
+
+.brand-panel h1 {
+    margin: 22px 0 12px;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 800;
+    text-shadow: 4px 4px 0 var(--ink);
+}
+
+.brand-description { margin-bottom: 22px; font-size: 18px; font-weight: 600; }
+
+.perks { display: grid; gap: 10px; list-style: none; }
+
+.perks li {
+    position: relative;
+    padding: 12px 16px 12px 46px;
+    font-size: 14px;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.18);
+    border: 2px solid var(--ink);
+    border-radius: 12px;
+}
+
+/* Yellow check bullet */
+.perks li::before {
+    content: "✓";
+    position: absolute;
+    left: 14px; top: 50%;
+    transform: translateY(-50%);
+    display: grid;
+    place-items: center;
+    width: 22px; height: 22px;
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--ink);
+    background: var(--yellow);
+    border-radius: 50%;
+}
+
+.brand-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 32px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+.footer-line { flex: 1; height: 3px; background: var(--ink); }
+
+/* Decorative circles */
+.blob { position: absolute; border: 3px solid var(--ink); border-radius: 50%; }
+.b1 { width: 260px; height: 260px; top: -90px; right: -80px; background: var(--yellow); }
+.b2 { width: 160px; height: 160px; bottom: -50px; left: -50px; background: var(--red); }
+.b3 { width: 80px; height: 80px; bottom: 120px; right: 40px; background: #fff; }
+
+/* Tilted sticker labels */
+.decorative-label {
+    position: absolute;
+    z-index: 2;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--ink);
+    background: #fff;
+    border: 2.5px solid var(--ink);
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 var(--ink);
+}
+.label-one { top: 40px; right: 50px; transform: rotate(6deg); }
+.label-two { bottom: 40px; right: 40px; transform: rotate(-5deg); }
+
+/* --- Right form panel --- */
+.form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+}
+
+.card {
+    width: 100%;
+    max-width: 440px;
+    padding: 32px;
+    background: #fff;
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    box-shadow: 8px 8px 0 var(--ink);
+}
+
+.form-heading { margin-bottom: 22px; }
+.form-heading h2 { margin-bottom: 6px; font-size: 2rem; }
+.form-heading p { font-size: 14px; color: var(--muted); }
+
+.form-eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    background: var(--yellow);
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+}
+
+/* Full-width green submit button */
+.card .btn {
+    width: 100%;
+    margin-top: 4px;
+    padding: 14px;
+    font-size: 15px;
+    color: #fff;
+    background: var(--green);
+}
+
+/* "Show password" checkbox row */
+.check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    letter-spacing: 0;
+    text-transform: none;
+    cursor: pointer;
+}
+
+.switch { margin-top: 18px; font-size: 14px; text-align: center; }
+
+.form-bottom {
+    margin-top: 20px;
+    padding-top: 14px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    opacity: 0.5;
+    border-top: 2px dashed var(--ink);
+}
+
+/*SHOPPING LIST PAGE*/
+.list-page { padding: 26px 16px 0; }
+
+.topbar, .board { max-width: 1000px; margin-left: auto; margin-right: auto; }
+
+/* --- Top bar --- */
+.topbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 20px;
+    padding: 14px 20px;
+    background: #fff;
+    border: 3px solid var(--ink);
+    border-radius: 16px;
+    box-shadow: 5px 5px 0 var(--ink);
+}
+
+.list-brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+.list-store-icon { font-size: 28px; }
+.logo { display: block; font-size: 20px; font-weight: 800; line-height: 1; }
+.list-brand small { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--green-d); }
+.hello { font-size: 14px; }
+
+/* --- Page layout --- */
+.board { display: grid; gap: 22px; margin-top: 24px; margin-bottom: 40px; }
+
+/* --- Hero --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 30px;
+    color: #fff;
+    background: var(--green);
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    box-shadow: 8px 8px 0 var(--ink);
+}
+.hero-content { flex: 1; }
+
+.hero-label {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--ink);
+    background: var(--yellow);
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+}
+
+.hero h1 {
+    margin: 12px 0 6px;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    text-shadow: 3px 3px 0 var(--ink);
+}
+
+#summary { margin-bottom: 16px; font-weight: 600; }
+
+.progress-info { margin-bottom: 6px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+
+.progress {
+    height: 22px;
+    overflow: hidden;
+    background: #fff;
+    border: 3px solid var(--ink);
+    border-radius: 999px;
+}
+
+/* Striped progress fill */
+#progressBar {
+    width: 0;
+    height: 100%;
+    background: repeating-linear-gradient(45deg, var(--yellow) 0 10px, #ffe27a 10px 20px);
+    transition: width 0.4s ease;
+}
+
+.hero-decoration {
+    padding: 16px 22px;
+    text-align: center;
+    color: var(--ink);
+    background: var(--yellow);
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    box-shadow: 5px 5px 0 var(--ink);
+    transform: rotate(4deg);
+}
+.hero-decoration span { display: block; font-size: 56px; line-height: 1.1; }
+.hero-decoration small { font-size: 11px; font-weight: 800; letter-spacing: 1.2px; }
+
+/* --- White cards: add form + list --- */
+.add-section, .paper {
+    padding: 24px;
+    background: #fff;
+    border: 3px solid var(--ink);
+    border-radius: 20px;
+    box-shadow: 6px 6px 0 var(--ink);
+}
+
+.section-heading, .paper-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.section-label { display: block; margin-bottom: 4px; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; color: var(--green-d); }
+.section-heading h2, .paper-head h2, .filter-section h2 { font-size: 1.5rem; }
+.section-heading p { margin-top: 2px; font-size: 14px; color: var(--muted); }
+.section-icon { font-size: 34px; }
+
+.add-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.3fr auto;
+    gap: 14px;
+    align-items: end;
+}
+.add-row .field { margin: 0; }
+.add-row .btn { color: #fff; background: var(--green); }
+
+/* --- Filter tabs --- */
+.filter-section { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+.tab { padding: 9px 18px; background: #fff; border-radius: 999px; box-shadow: 3px 3px 0 var(--ink); }
+.tab.active { color: var(--yellow); background: var(--ink); }
+
+/* --- List header --- */
+.summary-count { padding: 4px 12px; font-size: 12px; font-weight: 800; background: var(--yellow); border: 2.5px solid var(--ink); border-radius: 999px; }
+.summary-count:empty { display: none; }
+
+.list-column-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 8px 14px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--yellow);
+    background: var(--ink);
+    border-radius: 10px;
+}
+
+.empty { padding: 30px; font-weight: 600; text-align: center; color: var(--muted); border: 3px dashed var(--ink); border-radius: 14px; }
+
+/* --- List items --- */
+#groceryList { display: grid; gap: 12px; list-style: none; }
+
+#groceryList li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #fff;
+    border: 2.5px solid var(--ink);
+    border-radius: 14px;
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform 0.12s, box-shadow 0.12s;
+}
+#groceryList li:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--ink); }
+
+.item-name { flex: 1; font-weight: 700; }
+.item-qty { min-width: 36px; font-weight: 800; text-align: center; }
+
+.item-tag {
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--green-l);
+    border: 2px solid var(--ink);
+    border-radius: 999px;
+}
+
+/* Category colors (list.js sets data-cat on each row) */
+li[data-cat="Produce"] .item-tag { background: #bbf7d0; }
+li[data-cat="Meat & Fish"] .item-tag { background: #fecaca; }
+li[data-cat="Dairy & Eggs"] .item-tag { background: #bfdbfe; }
+li[data-cat="Pantry"] .item-tag { background: #fde68a; }
+
+/* Bought items */
+#groceryList li.done { background: #eef5ee; box-shadow: none; }
+#groceryList li.done .item-name { text-decoration: line-through; color: var(--muted); }
+
+.remove { padding: 7px 14px; font-size: 12px; color: #fff; background: var(--red); box-shadow: 2px 2px 0 var(--ink); }
+
+/* --- Footers --- */
+.paper-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    border-top: 3px dashed var(--ink);
+}
+
+.list-footer { font-size: 13px; text-align: center; color: var(--muted); }
+.list-footer span { display: block; font-size: 18px; font-weight: 800; color: var(--ink); }
+
+/*RESPONSIVE*/
+@media (max-width: 900px) {
+    .auth-page { grid-template-columns: 1fr; }
+    .brand-panel { padding: 50px 24px 40px; border-right: 0; border-bottom: 3px solid var(--ink); }
+    .perks, .decorative-label, .brand-footer { display: none; }
+    .add-row { grid-template-columns: 1fr 1fr; }
+    .add-row .btn { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+    .topbar { flex-wrap: wrap; }
+    .hero-decoration, .list-column-labels { display: none; }
+    .hero { padding: 22px; }
+    .add-row { grid-template-columns: 1fr; }
+    .card { padding: 22px; box-shadow: 5px 5px 0 var(--ink); }
+    #groceryList li { flex-wrap: wrap; }
+}
+
+/*COLOR VARIABLES*/
+:root {
+    --ink:     #14201a;
+    --cream:   #fff6dd;
+    --dots:    #f0e2b6;
+    --green:   #16a34a;
+    --green-d: #15803d;
+    --green-l: #bbf7d0;
+    --yellow:  #ffd23f;
+    --red:     #ef4444;
+    --muted:   #5f6b64;
+}
